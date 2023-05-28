@@ -1,3 +1,4 @@
+
 typedef struct process{
     int pid; // Identificador do processo
     int state; // Estado do processo (em execução = 1, bloqueado = 0, aguardando = -1)
@@ -13,7 +14,10 @@ typedef struct{
 } PCB_list;
 
 void initList(PCB_list* list);
-Process* createProcess(int pid, int state, int priority, int remainingTime, int totalTime);
+Process* createProcess(int pid, int priority, int remainingTime, int totalTime);
 void insert(PCB_list* list, Process *p);
 void displayList(PCB_list* list);
-Process* remove(PCB_list* list)
+Process* remover(PCB_list* list);
+
+Process *selectNextProcess(PCB_list* list);
+void SRTF(PCB_list *list);

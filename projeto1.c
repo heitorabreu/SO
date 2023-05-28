@@ -1,39 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
-#include <semaphore.h>
+//#include <pthread.h>
+//#include <semaphore.h>
 #include "pcb.c"
 
-// Defina as estruturas de dados necessárias
 
-// Defina as variáveis globais necessárias, como semáforos e mutexes
-
-// Implemente as funções necessárias, como processInterrupt, semaphoreP, semaphoreV, memLoadReq, memLoadFinish, processCreate, processFinish, etc.
-
-void processInterrupt(PCB *process, PCB_list* list){
-    PCB* aux;
-    aux = remove(list);
-    insert(PCB_list*, process);
-}
-
-// Função para execução da thread do núcleo do SO
-void* coreThread(void* arg) {
-    // Implemente a lógica do núcleo do SO aqui
-
-    return NULL;
-}
 
 int main() {
-    // Inicialize as estruturas de dados e variáveis globais
+    PCB_list *processList = malloc(sizeof(PCB_list));
+    initList(processList);
 
-    // Crie a thread do núcleo do SO
-    pthread_t core_tid;
-    //pthread_create(&core_tid, NULL, coreThread, NULL);
+    // Exemplo de criação e adição de processos à lista encadeada
+    Process* process1 = malloc(sizeof(Process));
+    process1 = createProcess(1, 1, 5, 5);
+    Process* process2 = malloc(sizeof(Process));
+    process2 = createProcess(2, 2, 3, 3);
+    Process* process3 = malloc(sizeof(Process));
+    process3 = createProcess(3, 3, 2, 2);
 
-    // Implemente a lógica da interface de controle aqui
+    insert(processList, process1);
+    insert(processList, process2);
+    insert(processList, process3);
 
-    // Aguarde a finalização da thread do núcleo do SO
-    //pthread_join(core_tid, NULL);
+    SRTF(processList);
 
     return 0;
 }
